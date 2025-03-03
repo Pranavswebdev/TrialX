@@ -17,7 +17,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   return (
-    <AppBar position="static" elevation={1}>
+    <AppBar sx={{ backgroundColor: "#E1EDF7" }} position="static" elevation={1}>
       <Toolbar>
         <IconButton
           edge="start"

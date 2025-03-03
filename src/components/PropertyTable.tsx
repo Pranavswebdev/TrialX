@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ErrorIcon from "@mui/icons-material/Error";
+import { styled } from "@mui/material/styles";
+import FilterListIcon from "@mui/icons-material/FilterList";
 
 interface PropertyData {
   name: string;
@@ -50,32 +52,54 @@ const PropertyTable: React.FC = () => {
       missing: 5,
       lastUpdate: "MM/DD/YYYY HH:MM",
     },
-    // Add more rows as needed
   ];
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: "rgba(13, 169, 235, 0.06)",
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      sx={{ width: "calc(100vw - 64px)", overflow: "auto" }}
+      component={Paper}
+    >
       <Table>
-        <TableHead>
+        <TableHead
+          sx={{
+            backgroundColor: "rgba(143, 149, 163, 0.14)",
+          }}
+        >
           <TableRow>
-            <TableCell>PROPERTY NAME</TableCell>
-            <TableCell>ADDRESS</TableCell>
-            <TableCell>PHONE</TableCell>
-            <TableCell>BUSINESS HOURS</TableCell>
-            <TableCell>CATEGORY</TableCell>
-            <TableCell>WEBSITE</TableCell>
-            <TableCell>MISMATCHED</TableCell>
-            <TableCell>MISSING</TableCell>
-            <TableCell>LAST UPDATE DATE AND TIME</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>
+              PROPERTY NAME
+              <IconButton size="small" sx={{ ml: 1 }}>
+                <FilterListIcon />
+              </IconButton>
+            </TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>ADDRESS</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>PHONE</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>BUSINESS HOURS</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>CATEGORY</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>WEBSITE</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>MISMATCHED</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>MISSING</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>
+              LAST UPDATE DATE AND TIME
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {properties.map((property, index) => (
-            <TableRow
+            <StyledTableRow
               key={index}
               sx={{ backgroundColor: index % 2 ? "#f9fafb" : "#ffffff" }}
             >
-              <TableCell sx={{ fontWeight: 700 }}>{property.name}</TableCell>
+              <TableCell sx={{ color: "#3464EB" }}>{property.name}</TableCell>
               <TableCell>{property.address}</TableCell>
               <TableCell>{property.phone}</TableCell>
               <TableCell>
@@ -103,7 +127,7 @@ const PropertyTable: React.FC = () => {
                 {property.missing > 0 && <ErrorIcon color="error" />}
               </TableCell>
               <TableCell>{property.lastUpdate}</TableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>

@@ -28,3 +28,4 @@ To start the project, follow these steps:
 - **Lazy Loading**: Used `React.lazy` and `Suspense` for lazy loading components, improving the initial load time.
 - **Reusable Components**: Created reusable `Table` and `Card` components that receive data through props. All tabs can use the same `Card` and `Table` components even though the data structure is different, ensuring reusability and efficiency.
 - **Data Management**: Data is stored in the `dummyData.tsx` file. Modify this file for data change purposes.
+- **Port**: 5173.

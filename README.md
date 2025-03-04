@@ -19,7 +19,7 @@ To start the project, follow these steps:
     ```
 4. Start the development server:
     ```sh
-    npm start
+    npm run dev
     ```
 
 ## Features

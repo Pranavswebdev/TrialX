@@ -47,7 +47,7 @@ const SummaryCards: React.FC<SummaryCardProps> = ({ cards }) => {
   return (
     <Box
       sx={{
-        width: { xs: "100%", xl: "60%" },
+        width: { xs: "100%", xl: "55%" },
         display: "flex",
         flexWrap: "wrap",
         gap: "16px",
@@ -56,7 +56,7 @@ const SummaryCards: React.FC<SummaryCardProps> = ({ cards }) => {
       {cards?.map((card, index) => (
         <Box
           sx={{
-            width: { xs: "100%", sm: "48%", lg: "23.6%" },
+            width: { xs: "100%", sm: "48%", lg: "auto" },
             maxWidth: { xs: "100%", lg: "280px" },
           }}
           key={index}

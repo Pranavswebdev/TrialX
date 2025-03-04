@@ -6,7 +6,7 @@ export const theme = createTheme({
     secondary: { main: "#F1AC58" },
     error: { main: "#ef4444" },
     warning: { main: "#f97316" },
-    info: { main: "#9333ea" },
+    info: { main: "#FFFFFF" },
     success: { main: "#7BB42D" },
     background: {
       default: "#f5f5f5",
@@ -45,12 +45,27 @@ export const theme = createTheme({
         root: { backgroundColor: "#ffffff" },
       },
     },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: { backgroundColor: " #2B3B5C", color: "black" },
+        root: { backgroundColor: "#ffffff" },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#f5f5f5",
-          color: "#1f2937",
+          backgroundColor: "#E1EDF7",
+          color: "black",
           boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          "&:focus": {
+            outline: "none",
+          },
         },
       },
     },

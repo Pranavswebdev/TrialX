@@ -1,23 +1,84 @@
 import React from "react";
-import { Tabs, Tab } from "@mui/material";
+import {
+  Tabs,
+  Tab,
+  Select,
+  MenuItem,
+  useMediaQuery,
+  useTheme,
+  Badge,
+  Box,
+} from "@mui/material";
 
 interface CustomTabsProps {
-  tabLabels: string[];
+  tabsData: { label: string; badge: unknown }[];
   tabValue: number;
-  onTabChange: (event: React.SyntheticEvent, newValue: number) => void;
+  onTabChange: (
+    event: React.SyntheticEvent | React.ChangeEvent<{ value: unknown }>,
+    newValue: number
+  ) => void;
 }
 
 const CustomTabs: React.FC<CustomTabsProps> = ({
-  tabLabels,
+  tabsData,
   tabValue,
   onTabChange,
 }) => {
-  return (
-    <Tabs value={tabValue} onChange={onTabChange}>
-      {tabLabels.map((label, index) => (
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  return isMobile ? (
+    <Select
+      value={tabValue}
+      onChange={(e) =>
+        onTabChange(
+          e as React.ChangeEvent<{ value: unknown }>,
+          (e.target as HTMLInputElement).value as unknown as number
+        )
+      }
+      fullWidth
+      variant="outlined"
+      sx={{
+        mb: 2,
+        backgroundColor: "#FFFFFF",
+        borderRadius: "10px 10px 0px 0px",
+        border: "1px solid #D9D5EC",
+      }}
+    >
+      {tabsData.map((data, index) => (
+        <MenuItem key={index} value={index}>
+          {data.label}
+        </MenuItem>
+      ))}
+    </Select>
+  ) : (
+    <Tabs value={tabValue} onChange={onTabChange} sx={{ mb: 2 }}>
+      {tabsData.map((tab, index) => (
         <Tab
           key={index}
-          label={label}
+          label={
+            tabValue === index && tab.badge ? (
+              <Box sx={{ position: "relative", overflow: "visible" }}>
+                <Badge
+                  badgeContent={tab.badge as number}
+                  color="error"
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      transform: "translate(50%, -60%)",
+                    },
+                  }}
+                >
+                  {tab.label}
+                </Badge>
+              </Box>
+            ) : (
+             tab.label
+            )
+          }
           sx={{
             width: "auto",
             height: "48px",
